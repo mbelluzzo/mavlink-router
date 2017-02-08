@@ -35,6 +35,7 @@ public:
     int remove_fd(int fd);
     void loop();
     void route_msg(struct buffer *buf, int target_sysid, int sender_sysid);
+    void route_msg(const mavlink_message_t *msg, int target_sysid);
     void handle_read(Endpoint *e);
     void handle_canwrite(Endpoint *e);
     void handle_tcp_connection();

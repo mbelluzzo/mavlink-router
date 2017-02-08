@@ -480,3 +480,12 @@ void Mainloop::_del_timeouts()
         }
     }
 }
+
+void Mainloop::route_msg(const mavlink_message_t *msg, int target_sysid)
+{
+    uint8_t data[MAVLINK_MAX_PACKET_LEN];
+    struct buffer buffer { 0, data };
+
+    buffer.len = mavlink_msg_to_send_buffer(data, msg);
+    route_msg(&buffer, target_sysid, msg->sysid);
+}
